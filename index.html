@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Sites</title>
+    <title>WebMoon - Monitor de Sites</title>
+    <!--Metas-->
+    <meta name="author" content="Davi Nesi e Fernando R.">
+    <meta name="description" content=".">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#1e2329">
+    <meta name="title" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Preloads-->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="preload" as="style" href="./style.css" />
+    <link rel="preload" as="style" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
+    <!--Styles-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
 </head>
+
 <body>
-    
+    <header>
+        <section class="title">
+            <h2>WebMoon - Monitor de Sites </h2>
+            <p>Atualizando em x segundos</p>
+        </section>
+        <section>
+            <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"
+                class="btn m-2 btn-outline-light text-nowrap buttom"><i class="mdi mdi-theme-light-dark"></i></button>
+            <button onclick="login();" aria-label="login-buttom" name="login-buttom"
+                class="btn m-2 btn-outline-light text-nowrap buttom"><i class="mdi mdi-account"></i> Entrar</button>
+        </section>
+    </header>
+
+    <main>
+        <section class="monitorar">
+            <p>O melhor jeito de monitorar o seu site favorito.</p>
+            <form id="monitorForm">
+                <input type="text" name="endereco" id="endereco" placeholder="Cole o endereço para monitora-lo">
+                <button type="submit">Monitorar</button>
+            </form>
+        </section>
+        <section>
+
+        </section>
+    </main>
+    <footer>
+        <div class="footer">
+            <p>Desenvolvido por Davi e Fernando</p>
+        </div>
+    </footer>
 </body>
+<script src="script.js"></script>
+
 </html>
