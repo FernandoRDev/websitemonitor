@@ -38,6 +38,9 @@ header {
     align-items: center;
     justify-content: space-between;
 }
+header section{
+    display: flex;
+}
 
 .title {
     display: flex;
