@@ -23,6 +23,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+    
+    
+
 </head>
 
 <body>
@@ -34,7 +40,7 @@
         <section>
             <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"><i
                     class="mdi mdi-theme-light-dark"></i></button>
-            <button onclick="login();" aria-label="login-buttom" name="login-buttom"><i class="mdi mdi-account"></i>
+            <button onclick="login();" aria-label="login-buttom" name="login-buttom" id="btn-user"><i class="mdi mdi-account"></i>
                 Entrar</button>
         </section>
     </header>
