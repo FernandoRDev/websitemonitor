@@ -35,7 +35,7 @@
             <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"><i
                     class="mdi mdi-theme-light-dark"></i></button>
             <button onclick="login();" aria-label="login-buttom" name="login-buttom" id="btn-user"><i
-                    class="mdi mdi-account"></i>Entrar</button>
+                    class="mdi mdi-account"></i> Entrar</button>
             <button onclick="logout();" aria-label="login-buttom" name="login-buttom" id="btn-logout"><i
                     class="mdi mdi-logout"></i>Sair</button>
         </section>
@@ -48,12 +48,11 @@
                 <label for="login-email">E-mail</label>
                 <input placeholder="seu@email.com" type="email" name="email" id="login-email" required>
                 <label for="login-password">Senha</label>
-
                 <input placeholder="********" type="password" id="login-password" name="password" required>
-                <a onclick="recoveryPass();">Esqueci minha senha</a>
+                <a onclick="recoveryPass();" class="btn-recovery"><small>Esqueci minha senha</small></a>
                 <button type="submit">Entrar</button>
             </form>
-            <a onclick="register();">Registre-se</a>
+            <a onclick="register();" class="btn-register">Registre-se!</a>
     </section>
     <section id="register">
         <div class="card animated bounceInRight fast">

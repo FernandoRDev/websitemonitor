@@ -5,6 +5,7 @@
 /* Cores */
 :root {
     --clr-light: white;
+    --clr-light2: white;
     --clr-border: #ced4da;
     --clr-main: #0074f8;
     --clr-dark: #1e2329;
@@ -12,9 +13,10 @@
 
 .lightmode {
     --clr-light: #1e2329;
-    --clr-border: #2c333b;
-    --clr-main: #0e1014;
-    --clr-dark: white;
+    --clr-light2: white;
+    --clr-border: #ced4da;
+    --clr-main: #0074f8;
+    --clr-dark: #fafafa;
 }
 
 /* Body */
@@ -38,7 +40,8 @@ header {
     align-items: center;
     justify-content: space-between;
 }
-header section{
+
+header section {
     display: flex;
 }
 
@@ -92,7 +95,7 @@ main {
 .monitorar button {
     margin-left: 0.5rem;
     line-height: 30px;
-    color: var(--clr-light);
+    color: var(--clr-light2);
     background-color: var(--clr-main);
 }
 
@@ -128,7 +131,7 @@ button {
 }
 
 button:hover {
-    color: var(--clr-light);
+    color: var(--clr-light2);
     background-color: var(--clr-main);
 }
 
@@ -163,7 +166,8 @@ input {
     flex-direction: column;
     align-items: center;
     color: #0e1014;
-    background-color: var(--clr-light);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--clr-light2);
     border-radius: .25rem;
     min-width: 0;
     max-width: 16rem;
@@ -180,7 +184,7 @@ input {
 
 .card button {
     line-height: 30px;
-    color: var(--clr-light);
+    color: var(--clr-light2);
     background-color: var(--clr-main);
 }
 
@@ -277,11 +281,28 @@ h2 span {
     color: var(--clr-dark) !important;
     width: 40px;
     height: 40px;
-    position: fixed;    
+    position: fixed;
     margin-top: -20px;
     margin-left: calc(50% - 20px);
 }
 
-#btn-logout{
+#btn-logout {
     display: none;
+}
+
+.btn-recovery {
+    padding: 0 0 1rem 0 !important;
+    margin-top: -10px;
+    text-align: end;
+    color: #646464;
+}
+
+.btn-recovery:hover {
+    color: var(--clr-main);
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    color: var(--clr-main);
+    cursor: pointer;
 }
