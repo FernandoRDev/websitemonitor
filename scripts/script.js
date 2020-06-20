@@ -163,15 +163,15 @@ function addSite(site){
     fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
         if(response.status==200){
             cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
-            cell2.innerHTML = '<div> <img src="on.png" alt="icon"/> online</div>'
+            cell2.innerHTML = '<div> <img src="assets/on.png" alt="icon"/> online</div>'
         
         } else {
             cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
-            cell2.innerHTML = '<div> <img src="off.png" alt="icon"/>offline</div>'
+            cell2.innerHTML = '<div> <img src="assets/off.png" alt="icon"/>offline</div>'
         }
       }).catch(function(e) {
         cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
-        cell2.innerHTML = '<div> <img src="off.png" alt="icon"/>offline</div>'
+        cell2.innerHTML = '<div> <img src="assets/off.png" alt="icon"/>offline</div>'
       });
          
 }
