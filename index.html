@@ -34,14 +34,16 @@
         <section>
             <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"><i
                     class="mdi mdi-theme-light-dark"></i></button>
-            <button onclick="login();" aria-label="login-buttom" name="login-buttom" id="btn-user"><i class="mdi mdi-account"></i>
-                Entrar</button>
+            <button onclick="login();" aria-label="login-buttom" name="login-buttom" id="btn-user"><i
+                    class="mdi mdi-account"></i>Entrar</button>
+            <button onclick="logout();" aria-label="login-buttom" name="login-buttom" id="btn-logout"><i
+                    class="mdi mdi-logout"></i>Sair</button>
         </section>
     </header>
     <section id="login">
         <div class="card animated bounceInRight fast">
             <button aria-label="Close" onclick="login();" class="btn-close"><i class="mdi mdi-close"></i></button>
-            <h2>Entrar</h2>            
+            <h2>Entrar</h2>
             <form id="loginForm">
                 <label for="login-email">E-mail</label>
                 <input placeholder="seu@email.com" type="email" name="email" id="login-email" required>
@@ -54,7 +56,7 @@
     <section id="register">
         <div class="card animated bounceInRight fast">
             <button aria-label="Close" onclick="login();" class="btn-close"><i class="mdi mdi-close"></i></button>
-            <h2>Registrar-se</h2>            
+            <h2>Registrar-se</h2>
             <form id="registerForm">
                 <label for="login-email">E-mail</label>
                 <input placeholder="seu@email.com" type="email" name="email" id="register-email" required>
@@ -96,7 +98,8 @@
     </main>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>    
-<script src="script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+<script src="loginMethods.js"></script>
+<script src="monitoring.js"></script>
 
 </html>

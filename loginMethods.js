@@ -27,11 +27,17 @@ btnUser = document.getElementById("btn-user")
 //Logout
 function logout() {
     auth.signOut();
+    location.reload();
 }
 
 //Listing change of user
-auth.onAuthStateChanged(function (user){
-    btnUser.textContent = user.email
+auth.onAuthStateChanged(function (user){   
+    let bntLogout = document.getElementById("btn-logout")
+
+    if (user){
+        btnUser.textContent = user.email
+        bntLogout.style.display = "block";
+    }
 });
 
 //Login
