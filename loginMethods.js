@@ -97,13 +97,13 @@ function getInputVal(id) {
 
 // Modal login
 function login() {
-    if (getLogin.style.display === "block") {
+    if (getLogin.style.display === "flex") {
         getLogin.style.display = "none";
     } else {
-        if (getRegister.style.display === "block") {
+        if (getRegister.style.display === "flex") {
             getRegister.style.display = "none";
         }else{
-            getLogin.style.display = "block";
+            getLogin.style.display = "flex";
             getRegister.style.display = "none";            
         }
     }
@@ -111,10 +111,10 @@ function login() {
 
 // Modal register
 function register() {
-    if (getRegister.style.display === "block") {
+    if (getRegister.style.display === "flex") {
         getRegister.style.display = "none";
     } else {
-        getRegister.style.display = "block";
+        getRegister.style.display = "flex";
         getLogin.style.display = "none";
     }
 }

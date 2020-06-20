@@ -157,6 +157,13 @@ input {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+/* Footer */
+footer {
+    justify-content: center;
+    display: flex;
+    opacity: 0.5;
+    color: var(--clr-light);
+}
 
 /* Card */
 .card {
@@ -207,6 +214,7 @@ input {
     margin-bottom: 1rem;
 }
 
+/* Seções*/
 #login {
     display: none;
 }
@@ -255,30 +263,14 @@ tr:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-/* Resposividade */
-@media only screen and (max-width: 600px) {
-    #monitorForm {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .monitorar button {
-        margin: 0.5rem 0 0 0;
-    }
-
-    .mainContent table {
-        min-width: 80vw;
-    }
-}
-
 h2 span {
     color: var(--clr-main);
 }
 
-
+/* Botões */
 .btn-close {
     background-color: transparent !important;
-    color: var(--clr-dark) !important;
+    color: #1e2329 !important;
     width: 40px;
     height: 40px;
     position: fixed;
@@ -297,12 +289,42 @@ h2 span {
     color: #646464;
 }
 
-.btn-recovery:hover {
+.btn-recovery:hover,
+.btn-register:hover {
     color: var(--clr-main);
     cursor: pointer;
 }
 
-.btn-register:hover {
-    color: var(--clr-main);
-    cursor: pointer;
+/* Resposividade */
+@media only screen and (max-width: 600px) {
+    #monitorForm {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .monitorar button {
+        margin: 0.5rem 0 0 0;
+    }
+
+    .mainContent table {
+        min-width: 80vw;
+    }
+
+    .title,
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title {
+        padding-bottom: 1rem;
+    }
+
+    #login, #register {
+        justify-content: center;
+    }
+
+    .card {
+        right: unset;
+    }
 }

@@ -2,29 +2,29 @@
 let lightMode = localStorage.getItem('lightMode');
 const enablelightMode = () => {
 
-  document.body.classList.add('lightmode');
+    document.body.classList.add('lightmode');
 
-  localStorage.setItem("lightMode", "enabled");
+    localStorage.setItem("lightMode", "enabled");
 
 };
 
 const disablelightMode = () => {
 
-  document.body.classList.remove('lightmode');
+    document.body.classList.remove('lightmode');
 
-  localStorage.setItem("lightMode", null);
+    localStorage.setItem("lightMode", null);
 
 };
 
 if (lightMode == 'enabled') {
-  enablelightMode();
+    enablelightMode();
 }
 
 function theme() {
-  lightMode = localStorage.getItem('lightMode');
-  if (lightMode !== "enabled") {
-    enablelightMode();
-  } else {
-    disablelightMode();
-  }
+    lightMode = localStorage.getItem('lightMode');
+    if (lightMode !== "enabled") {
+        enablelightMode();
+    } else {
+        disablelightMode();
+    }
 }
