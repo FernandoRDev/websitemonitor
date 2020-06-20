@@ -1,4 +1,6 @@
 //Config firebase
+var sites = [];
+
 const config = {
     apiKey: "AIzaSyAPHPawp-rH7O9zolT4MQa6V1OxoucibUQ",
     authDomain: "webmoonitor.firebaseapp.com",
@@ -21,9 +23,8 @@ const registerForm = document.querySelector("#registerForm");
 
 const getRegister = document.getElementById("register");
 const getLogin = document.getElementById("login");
-
+usuarioid= null
 btnUser = document.getElementById("btn-user")
-
 //Logout
 function logout() {
     auth.signOut();
@@ -44,16 +45,33 @@ function recoveryPass(){
       });
 }
 
+function refresh(){
+    location.reload();
+}
 
 //Listing change of user
 auth.onAuthStateChanged(function (user){   
-    let bntLogout = document.getElementById("btn-logout")
-
+    let bntLogout = document.getElementById("btn-logout")    
     if (user){
         btnUser.textContent = (user.email).split("@")[0]
         bntLogout.style.display = "block";
+        usuarioid= user.uid
+        fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
+            response.json().then(function(json){
+                json.forEach(function(x) {
+                    if(x.userid==usuarioid){
+                        addSite(x.site,false)
+                    }
+                })
+                
+            })
+
+        })
+    } else {
+        usuarioid= null
     }
 });
+
 
 //Login
 loginForm.addEventListener("submit", (e) => {
@@ -124,7 +142,7 @@ function register() {
 
 
 const monitorForm = document.querySelector("#monitorForm");
-var sites = [];
+
 
 //Login
 monitorForm.addEventListener("submit", (e) => {
@@ -141,24 +159,29 @@ monitorForm.addEventListener("submit", (e) => {
     {
         site = site.split('/')[0]
     }
-    console.log(site)
     monitorForm.reset()
-    addSite(site)
+    addSite(site,true)
 });
 
 
-function addSite(site){
+function addSite(site,salvar){
     if(sites.indexOf(site)){
         sites.push(site)
     } else {
         return
     }
-
+    
+    if(salvar){
+        if(usuarioid!=null){
+            var payload = {userid:usuarioid,site:site}
+            fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867, {method:'POST', body:JSON.stringify(payload), headers:{'content-type': 'application/json'} })
+        }
+    }
+    
     var table = document.getElementById("monitorTable")
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-
 
     fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
         if(response.status==200){
@@ -190,28 +213,3 @@ function isURL(str)
           return false;
         }
 }
-
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-  function loop(){
-    sleep(5000).then(() => {
-        console.log("eho")
-        sites.forEach(site => {
-            fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
-                if(response.status==200){
-                    console.log("Site Online")
-                } else {
-                    //console.clear()
-                    console.log("Site offline")
-                }
-              })
-
-        });
-        loop();
-     });
-
-}
-
-  //loop();
