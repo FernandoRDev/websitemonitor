@@ -141,6 +141,7 @@ monitorForm.addEventListener("submit", (e) => {
     {
         site = site.split('/')[0]
     }
+    console.log(site)
     monitorForm.reset()
     addSite(site)
 });
@@ -161,7 +162,6 @@ function addSite(site){
 
     fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
         if(response.status==200){
-            
             cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
             cell2.innerHTML = '<div> <img src="on.png" alt="icon"/> online</div>'
         
