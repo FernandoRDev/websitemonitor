@@ -310,14 +310,11 @@ h2 span {
         min-width: 80vw;
     }
 
-    .title h2 {
-        margin-right: unset;
-    }
-
     .title,
     header {
         justify-content: center;
         text-align: center;
+        align-items: baseline;
     }
 
     .title {
