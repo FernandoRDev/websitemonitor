@@ -126,8 +126,6 @@ function register() {
 const monitorForm = document.querySelector("#monitorForm");
 var sites = [];
 
-
-
 //Login
 monitorForm.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -135,6 +133,10 @@ monitorForm.addEventListener("submit", (e) => {
     if(!isURL(site)){
         return alert("Informe uma url valida")
     }
+    site = site.replace('https://','')
+    site = site.replace('http://','')
+    site = site.replace('www.','')
+    site = site.replace('ww2.','')
     addSite(site)
 });
 
@@ -142,17 +144,34 @@ monitorForm.addEventListener("submit", (e) => {
 function addSite(site){
     if(sites.indexOf(site)){
         sites.push(site)
-
-        fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
-            if(response.status==200){
-                console.log("Site Online")
-            } else {
-                //console.clear()
-                console.log("Site offline")
-            }
-          })
+    } else {
+        return
     }
+
+    var table = document.getElementById("monitorTable")
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+
+
+    fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
+        if(response.status==200){
+            
+            cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
+            cell2.innerHTML = '<div> <img src="on.png" alt="icon"/> online</div>'
+        
+        } else {
+            cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
+            cell2.innerHTML = '<div> <img src="off.png" alt="icon"/>offline</div>'
+        }
+      }).catch(function(e) {
+        cell1.innerHTML = '<div> <img src="http://www.google.com/s2/favicons?domain='+site+'"/>'+site+'</div>'
+        cell2.innerHTML = '<div> <img src="off.png" alt="icon"/>offline</div>'
+      });
+         
 }
+
+
 
 function isURL(str)
 {
@@ -166,3 +185,28 @@ function isURL(str)
           return false;
         }
 }
+
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+  function loop(){
+    sleep(5000).then(() => {
+        console.log("eho")
+        sites.forEach(site => {
+            fetch("https://cors-anywhere.herokuapp.com/"+site).then(function(response) {
+                if(response.status==200){
+                    console.log("Site Online")
+                } else {
+                    //console.clear()
+                    console.log("Site offline")
+                }
+              })
+
+        });
+        loop();
+     });
+
+}
+
+  //loop();
