@@ -159,10 +159,12 @@ input {
 
 /* Footer */
 footer {
-    justify-content: center;
-    display: flex;
-    padding-bottom: 1rem;
-    opacity: 0.5;
+    z-index: -100;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 2rem;
+    opacity: 0.3;
     color: var(--clr-light);
 }
 
@@ -216,16 +218,13 @@ footer {
 }
 
 /* Seções*/
-#login {
-    display: none;
-}
-
+#login,
 #register {
     display: none;
 }
 
 .mainContent {
-    margin: 2rem;
+    margin: 2rem 2rem 0 2rem;
     max-width: 80vw;
 }
 
@@ -239,7 +238,7 @@ th {
 }
 
 table {
-    min-width: 30vw;
+    min-width: 50vw;
     border-radius: 0.25rem;
     border-collapse: collapse;
 }
@@ -315,13 +314,15 @@ h2 span {
     header {
         justify-content: center;
         text-align: center;
+        align-items: baseline;
     }
 
     .title {
         padding-bottom: 1rem;
     }
 
-    #login, #register {
+    #login,
+    #register {
         justify-content: center;
     }
 
