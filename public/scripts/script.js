@@ -165,11 +165,11 @@ monitorForm.addEventListener("submit", (e) => {
 
 
 function addSite(site,salvar){
-    if(sites.indexOf(site)){
-        sites.push(site)
-    } else {
-        return
+    if(sites.indexOf(site) > -1){
+       return 
     }
+
+    sites.push(site)
     
     if(salvar){
         if(usuarioid!=null){
