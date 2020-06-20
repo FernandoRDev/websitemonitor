@@ -30,12 +30,27 @@ function logout() {
     location.reload();
 }
 
+function recoveryPass(){
+    let loginEmail = getInputVal("login-email");
+    
+    if(loginEmail == '' || loginEmail == null){
+        return alert("Preencha o campo de e-mail para recuperar")
+    }
+    
+    auth.sendPasswordResetEmail(loginEmail).then(function() {
+        return alert("E-mail de recuperação enviado")
+      }).catch(function(e) {
+        return alert(e.message)
+      });
+}
+
+
 //Listing change of user
 auth.onAuthStateChanged(function (user){   
     let bntLogout = document.getElementById("btn-logout")
 
     if (user){
-        btnUser.textContent = user.email
+        btnUser.textContent = (user.email).split("@")[0]
         bntLogout.style.display = "block";
     }
 });
@@ -50,8 +65,8 @@ loginForm.addEventListener("submit", (e) => {
         loginForm.reset();
         getLogin.style.display = "none";
       })
-      .catch((err) => {
-        //TODO: feedback login errado kek
+      .catch((e) => {
+        return alert(e.message)//TODO: feedback login errado kek
       });
   });
 
@@ -70,8 +85,8 @@ registerForm.addEventListener("submit", (e) => {
         loginForm.reset();
         getRegister.style.display = "none";
       })
-      .catch((err) => {
-        //TODO: feedback login errado kek
+      .catch((e) => {
+        return alert(e.message)
       });
   });
 
