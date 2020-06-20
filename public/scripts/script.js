@@ -1,4 +1,6 @@
 //Config firebase
+var sites = [];
+
 const config = {
     apiKey: "AIzaSyAPHPawp-rH7O9zolT4MQa6V1OxoucibUQ",
     authDomain: "webmoonitor.firebaseapp.com",
@@ -21,10 +23,8 @@ const registerForm = document.querySelector("#registerForm");
 
 const getRegister = document.getElementById("register");
 const getLogin = document.getElementById("login");
-const getDetail = document.getElementById("detail");
-
+usuarioid = null
 btnUser = document.getElementById("btn-user")
-
 //Logout
 function logout() {
     auth.signOut();
@@ -45,17 +45,35 @@ function recoveryPass() {
     });
 }
 
+function refresh() {
+    location.reload();
+}
+
 //Listing change of user
 auth.onAuthStateChanged(function (user) {
-    let btnLogout = document.getElementById("btn-logout")
+    let bntLogout = document.getElementById("btn-logout")
     let btnLogin = document.getElementById("btn-user")
-
     if (user) {
         btnUser.textContent = (user.email).split("@")[0]
-        btnLogout.style.display = "block";
+        bntLogout.style.display = "block";
         btnLogin.removeAttribute('onclick');
+        usuarioid = user.uid
+        fetch("https://projetofinal-ppw.herokuapp.com/api/" + 109867).then(function (response) {
+            response.json().then(function (json) {
+                json.forEach(function (x) {
+                    if (x.userid == usuarioid) {
+                        addSite(x.site, false)
+                    }
+                })
+
+            })
+
+        })
+    } else {
+        usuarioid = null
     }
 });
+
 
 //Login
 loginForm.addEventListener("submit", (e) => {
@@ -126,7 +144,7 @@ function register() {
 
 
 const monitorForm = document.querySelector("#monitorForm");
-var sites = [];
+
 
 //Login
 monitorForm.addEventListener("submit", (e) => {
@@ -142,24 +160,38 @@ monitorForm.addEventListener("submit", (e) => {
     if (site.includes('/')) {
         site = site.split('/')[0]
     }
-    console.log(site)
     monitorForm.reset()
-    addSite(site)
+    addSite(site, true)
 });
 
 
-function addSite(site) {
+function addSite(site, salvar) {
     if (sites.indexOf(site)) {
         sites.push(site)
     } else {
         return
     }
 
+    if (salvar) {
+        if (usuarioid != null) {
+            var payload = {
+                userid: usuarioid,
+                site: site
+            }
+            fetch("https://projetofinal-ppw.herokuapp.com/api/" + 109867, {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+        }
+    }
+
     var table = document.getElementById("monitorTable")
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-
 
     fetch("https://cors-anywhere.herokuapp.com/" + site).then(function (response) {
         if (response.status == 200) {
@@ -177,8 +209,6 @@ function addSite(site) {
 
 }
 
-
-
 function isURL(str) {
     regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
     if (regexp.test(str)) {
@@ -187,28 +217,3 @@ function isURL(str) {
         return false;
     }
 }
-
-function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-function loop() {
-    sleep(5000).then(() => {
-        console.log("eho")
-        sites.forEach(site => {
-            fetch("https://cors-anywhere.herokuapp.com/" + site).then(function (response) {
-                if (response.status == 200) {
-                    console.log("Site Online")
-                } else {
-                    //console.clear()
-                    console.log("Site offline")
-                }
-            })
-
-        });
-        loop();
-    });
-
-}
-
-//loop();
