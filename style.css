@@ -161,6 +161,7 @@ input {
 footer {
     justify-content: center;
     display: flex;
+    padding-bottom: 1rem;
     opacity: 0.5;
     color: var(--clr-light);
 }
@@ -238,7 +239,7 @@ th {
 }
 
 table {
-    min-width: 60vw;
+    min-width: 30vw;
     border-radius: 0.25rem;
     border-collapse: collapse;
 }
