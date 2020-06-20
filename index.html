@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<link rel="icon" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
 
 <head>
+    <link rel="icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
     <meta charset="UTF-8">
-    <title>WebMoon - Monitor de Sites</title>
+    <title>WebMonitor - Monitor de Sites</title>
     <!--Metas-->
     <meta name="author" content="Davi Nesi e Fernando R.">
     <meta name="description" content=".">
@@ -17,8 +17,10 @@
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="preload" as="style" href="./style.css" />
     <link rel="preload" as="style" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <!--Styles-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css" />
 </head>
@@ -26,17 +28,43 @@
 <body>
     <header>
         <section class="title">
-            <h2>WebMoon - Monitor de Sites </h2>
+            <h2><span>WebMoon</span>itor</h2>
             <p>Atualizando em x segundos</p>
         </section>
         <section>
-            <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"
-                class="btn m-2 btn-outline-light text-nowrap buttom"><i class="mdi mdi-theme-light-dark"></i></button>
-            <button onclick="login();" aria-label="login-buttom" name="login-buttom"
-                class="btn m-2 btn-outline-light text-nowrap buttom"><i class="mdi mdi-account"></i> Entrar</button>
+            <button onclick="theme();" aria-label="theme-buttom" name="theme-buttom"><i
+                    class="mdi mdi-theme-light-dark"></i></button>
+            <button onclick="login();" aria-label="login-buttom" name="login-buttom"><i class="mdi mdi-account"></i>
+                Entrar</button>
         </section>
     </header>
-
+    <section id="login">
+        <div class="card animated bounceInRight fast">
+            <button aria-label="Close" onclick="login();" class="btn-close"><i class="mdi mdi-close"></i></button>
+            <h2>Entrar</h2>            
+            <form id="loginForm">
+                <label for="login-email">E-mail</label>
+                <input placeholder="seu@email.com" type="email" name="email" id="login-email" required>
+                <label for="login-password">Senha</label>
+                <input placeholder="********" type="password" id="login-password" name="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <a onclick="register();">Registre-se</a>
+    </section>
+    <section id="register">
+        <div class="card animated bounceInRight fast">
+            <button aria-label="Close" onclick="login();" class="btn-close"><i class="mdi mdi-close"></i></button>
+            <h2>Registrar-se</h2>            
+            <form id="registerForm">
+                <label for="login-email">E-mail</label>
+                <input placeholder="seu@email.com" type="email" name="email" id="register-email" required>
+                <label for="login-password">Senha</label>
+                <input placeholder="********" type="password" id="register-password" name="password" required>
+                <label for="login-password">Confirmar senha</label>
+                <input placeholder="********" type="password" id="repeat-password" name="password" required>
+                <button type="submit">Registrar-se</button>
+            </form>
+    </section>
     <main>
         <section class="monitorar">
             <p>O melhor jeito de monitorar o seu site favorito.</p>
@@ -45,15 +73,27 @@
                 <button type="submit">Monitorar</button>
             </form>
         </section>
-        <section>
-
+        <section class="mainContent" id="main">
+            <table id="monitorTable">
+                <thead>
+                    <th>Site</th>
+                    <th>Status</th>
+                </thead>
+                <tr>
+                    <td>
+                        <div>
+                            <img src="icon.png" alt="icon">google.com
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <img src="on.png" alt="icon">online
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </section>
     </main>
-    <footer>
-        <div class="footer">
-            <p>Desenvolvido por Davi e Fernando</p>
-        </div>
-    </footer>
 </body>
 <script src="script.js"></script>
 
