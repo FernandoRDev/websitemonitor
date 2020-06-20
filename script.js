@@ -135,6 +135,7 @@ monitorForm.addEventListener("submit", (e) => {
     }
     site = site.replace('https://','')
     site = site.replace('http://','')
+    site = site.replace('/','')
     site = site.replace('www.','')
     site = site.replace('ww2.','')
     addSite(site)
