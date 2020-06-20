@@ -52,9 +52,11 @@ function refresh(){
 //Listing change of user
 auth.onAuthStateChanged(function (user){   
     let bntLogout = document.getElementById("btn-logout")    
+    let btnLogin = document.getElementById("btn-user")
     if (user){
         btnUser.textContent = (user.email).split("@")[0]
         bntLogout.style.display = "block";
+        btnLogin.removeAttribute('onclick');
         usuarioid= user.uid
         fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
             response.json().then(function(json){
