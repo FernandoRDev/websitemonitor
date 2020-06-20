@@ -1,4 +1,4 @@
-//cfg firebase
+//Config firebase
 const config = {
     apiKey: "AIzaSyAPHPawp-rH7O9zolT4MQa6V1OxoucibUQ",
     authDomain: "webmoonitor.firebaseapp.com",
@@ -9,14 +9,18 @@ const config = {
     appId: "1:812088992257:web:b7bbe5b3ecc23f07211600",
     measurementId: "G-M97ZY1J6XJ"
 };
+
+//Firebase init
 firebase.initializeApp(config);
 
 // Auth var
 const auth = firebase.auth();
+
 const loginForm = document.querySelector("#loginForm");
 const registerForm = document.querySelector("#registerForm");
-const getregister = document.getElementById("register");
-const getlogin = document.getElementById("login");
+
+const getRegister = document.getElementById("register");
+const getLogin = document.getElementById("login");
 
 btnUser = document.getElementById("btn-user")
 
@@ -38,7 +42,7 @@ loginForm.addEventListener("submit", (e) => {
   
     firebase.auth().signInWithEmailAndPassword(loginEmail, loginPass).then((cred) => {
         loginForm.reset();
-        getlogin.style.display = "none";
+        getLogin.style.display = "none";
       })
       .catch((err) => {
         //TODO: feedback login errado kek
@@ -58,7 +62,7 @@ registerForm.addEventListener("submit", (e) => {
 
     firebase.auth().createUserWithEmailAndPassword(registerEmail, registerPass).then((cred) => {
         loginForm.reset();
-        getregister.style.display = "none";
+        getRegister.style.display = "none";
       })
       .catch((err) => {
         //TODO: feedback login errado kek
@@ -72,24 +76,24 @@ function getInputVal(id) {
 
 // Modal login
 function login() {
-    if (getlogin.style.display === "block") {
-        getlogin.style.display = "none";
+    if (getLogin.style.display === "block") {
+        getLogin.style.display = "none";
     } else {
-        if (getregister.style.display === "block") {
-            getregister.style.display = "none";
+        if (getRegister.style.display === "block") {
+            getRegister.style.display = "none";
         }else{
-            getlogin.style.display = "block";
-            getregister.style.display = "none";            
+            getLogin.style.display = "block";
+            getRegister.style.display = "none";            
         }
     }
 }
 
 // Modal register
 function register() {
-    if (getregister.style.display === "block") {
-        getregister.style.display = "none";
+    if (getRegister.style.display === "block") {
+        getRegister.style.display = "none";
     } else {
-        getregister.style.display = "block";
-        getlogin.style.display = "none";
+        getRegister.style.display = "block";
+        getLogin.style.display = "none";
     }
 }
