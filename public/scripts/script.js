@@ -224,7 +224,7 @@ function apagarTudo(){
         })
     }
     
-    //refresh()
+    refresh()
 }
 
 function deletar(){
