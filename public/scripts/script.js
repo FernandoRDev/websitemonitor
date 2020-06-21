@@ -58,6 +58,8 @@ auth.onAuthStateChanged(function (user){
         bntLogout.style.display = "block";
         btnLogin.removeAttribute('onclick');
         usuarioid= user.uid
+        sites = [];
+        table.innerHTML = "<thead><th>Site</th><th>Status</th></thead>";
         fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
             response.json().then(function(json){
                 json.forEach(function(x) {
@@ -98,7 +100,7 @@ registerForm.addEventListener("submit", (e) => {
     const registerEmail = getInputVal("register-email");
   
     if(registerPass != repeatPass){
-        return alert("errou brother");
+        return alert("As senha não se correspondem!");
     }
 
     firebase.auth().createUserWithEmailAndPassword(registerEmail, registerPass).then((cred) => {
@@ -141,17 +143,14 @@ function register() {
 
 
 //------------- MONITORAMENTO --------------//
-
-
 const monitorForm = document.querySelector("#monitorForm");
 
-
-//Login
+//Monitor form
 monitorForm.addEventListener("submit", (e) => {
     e.preventDefault()
     site = getInputVal("endereco");
     if(!isURL(site)){
-        return alert("Informe uma url valida")
+        return alert("Informe uma url válida")
     }
     site = site.replace('https://','')
     site = site.replace('http://','')
@@ -170,17 +169,15 @@ function addSite(site,salvar){
     if(sites.indexOf(site) > -1 ){
        return 
     }
-
     sites.push(site)
-    
+
     if(salvar){
         if(usuarioid!=null){
             var payload = {userid:usuarioid,site:site}
             fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867, {method:'POST', body:JSON.stringify(payload), headers:{'content-type': 'application/json'} })
         }
     }
-    
-    
+      
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -201,11 +198,6 @@ function addSite(site,salvar){
          
 }
 
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-}
-  
-
 function apagarTudo(){
     
     if(usuarioid==null){
@@ -220,6 +212,7 @@ function apagarTudo(){
                     }
                 }
             })
+            sites = [];
         })
     }
     table.innerHTML = "<thead><th>Site</th><th>Status</th></thead>";
