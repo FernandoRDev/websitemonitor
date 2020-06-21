@@ -20,7 +20,7 @@ const auth = firebase.auth();
 
 const loginForm = document.querySelector("#loginForm");
 const registerForm = document.querySelector("#registerForm");
-
+const table = document.getElementById("monitorTable")
 const getRegister = document.getElementById("register");
 const getLogin = document.getElementById("login");
 usuarioid= null
@@ -180,7 +180,7 @@ function addSite(site,salvar){
         }
     }
     
-    var table = document.getElementById("monitorTable")
+    
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -211,33 +211,18 @@ function apagarTudo(){
     if(usuarioid==null){
         refresh();
     } else {
-        qntd =0
         fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
             response.json().then(function(json){
-                json.forEach(function(x) {
-                    if(x.userid==usuarioid){
-                        deletar()
-                        sleep(500).then(() => {})
+                console.log(json)
+                for(i= json.length-1 ; i > -1 ; i--){
+                    if(json[i].userid==usuarioid){
+                        fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867+"/"+i, {method:'DELETE'}).then(()=>{})
                     }
-                })
+                }
             })
         })
     }
-    
-    refresh()
-}
-
-function deletar(){
-    fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
-        response.json().then(function(json){
-           for(i = 0; i <= json.length ; i ++){
-            if(json[i].userid==usuarioid){
-                fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867+"/"+i, {method:'DELETE'}).then(()=>{})
-                break
-            }
-           }
-        })
-    })
+    table.innerHTML = "<thead><th>Site</th><th>Status</th></thead>";
 }
 
 
