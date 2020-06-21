@@ -292,14 +292,14 @@ h2 span {
 
 .btn-recovery:hover,
 .btn-register:hover,
-.title p:hover,
-#main p:hover {
+.title p:hover{
     color: var(--clr-main);
     cursor: pointer;
 }
 
-#main p {
-    text-align: center;
+#apagarTudo:hover {
+    color: red;
+    cursor: pointer;
 }
 
 /* Resposividade */

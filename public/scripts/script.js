@@ -201,6 +201,44 @@ function addSite(site,salvar){
          
 }
 
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
+  
+
+function apagarTudo(){
+    
+    if(usuarioid==null){
+        refresh();
+    } else {
+        qntd =0
+        fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
+            response.json().then(function(json){
+                json.forEach(function(x) {
+                    if(x.userid==usuarioid){
+                        deletar()
+                        sleep(500).then(() => {})
+                    }
+                })
+            })
+        })
+    }
+    
+    //refresh()
+}
+
+function deletar(){
+    fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867).then(function(response){
+        response.json().then(function(json){
+           for(i = 0; i <= json.length ; i ++){
+            if(json[i].userid==usuarioid){
+                fetch("https://projetofinal-ppw.herokuapp.com/api/"+109867+"/"+i, {method:'DELETE'}).then(()=>{})
+                break
+            }
+           }
+        })
+    })
+}
 
 
 function isURL(str)
