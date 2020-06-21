@@ -166,6 +166,7 @@ footer {
     margin-bottom: 2rem;
     opacity: 0.3;
     color: var(--clr-light);
+    text-align: center;
 }
 
 /* Card */
